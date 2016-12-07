@@ -16,4 +16,6 @@
 //= require_tree .
 //= require dropzone
 //= require bootstrap-sprockets
+//= require jquery-ui/datepicker
+//= require jquery-ui/datepicker-ja
 //= require toastr
