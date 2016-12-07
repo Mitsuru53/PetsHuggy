@@ -166,9 +166,12 @@
 
 
     <!-- レビュー    -->
-    <div class="row">
+    <div class="row row-space-4">
         <div class="col-md-9">
-            <h3 class="row-space-3">レビュー</h3>
+            <h3 class="row-space-3">レビュー<%= @review.count %>件</h3>
+            <div id="average_star_rate"></div>
+            <%= render 'reviews/form' if @currentUserBooking && !@currentUserReview %>
+            <%= render 'reviews/list' %>
         </div>
 
         <div class="col-md-3">
@@ -420,4 +423,12 @@ $(function() {
     }
   });
 });
+</script>
+
+<script>
+  $('#average_star_rate').raty({
+    path: '/assets',
+    readOnly: true,
+    score: <%= @listing.average_star_rate %>
+  });
 </script>

@@ -10,6 +10,14 @@ resources :users,only: [:show]
 resources :listings do
   resources :reservations, only: [:new,:create]
 end
+resources :listings do
+  resources :reviews, only: [:destroy,:create]
+end
+
+resources :conversations,only: [:index, :create] do
+  resources :messages, only: [:index, :create]
+end
+
 resources :photos, only: [:create,:destroy] do
   collection do
     get :list
@@ -31,5 +39,7 @@ get 'manage-listing/:id/publish' => 'listings#publish',as: 'manage-listing_publi
 get '/connect/oauth' => 'stripe#oauth', as: 'stripe_oauth'
 get '/connect/confirm' => 'stripe#confirm', as: 'stripe_confirm'
 get 'connect/deauthorize' => 'stripe#deauthorize', as: 'stripe_deauthorize'
-
+get '/not_checked' => 'listings#not_checked'
+get '/search' => 'pages#search'
+get '/ajaxsearch' => 'pages#ajaxsearch'
 end
